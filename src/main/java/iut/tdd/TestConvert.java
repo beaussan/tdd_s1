@@ -1,7 +1,6 @@
 package iut.tdd;
 
-import junit.framework.Assert;
-
+import org.junit.Assert;
 import org.junit.Test;
 
 public class TestConvert {
@@ -9,7 +8,7 @@ public class TestConvert {
 	public void test_num2text_zero () {
 		// Given
 		String input = "0";
-		String expected = "zéro";
+		String expected = "zero";
 		Convert myConvert = new Convert();
 		// When
 		String actual = myConvert.num2text(input);
