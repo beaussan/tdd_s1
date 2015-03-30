@@ -9,9 +9,9 @@ public class TestConvert {
 		// Given
 		String input = "0";
 		String expected = "zero";
-		Convert myConvert = new Convert();
+		//Convert myConvert = new Convert();
 		// When
-		String actual = myConvert.num2text(input);
+		String actual = Convert.num2text(input);
 		// Then
 		Assert.assertEquals(expected, actual);
 	}
