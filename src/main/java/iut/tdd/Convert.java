@@ -5,7 +5,8 @@ import java.util.Map;
 
 public class Convert {
 	private static Map<String, String> dataString = new HashMap<String, String>();
-	static{
+
+	static {
 		dataString.put("0", "zero");
 		dataString.put("1", "un");
 		dataString.put("2", "deux");
@@ -17,12 +18,13 @@ public class Convert {
 		dataString.put("8", "huit");
 		dataString.put("9", "neuf");
 	}
+
 	public static String num2text(String input) {
 		return (dataString.containsKey(input)) ? dataString.get(input) : null;
 	}
 
 	public static String text2num(String input) {
-		if(!dataString.values().contains(input)){
+		if (!dataString.values().contains(input)) {
 			return null;
 		}
 		for (String str : dataString.keySet()) {
