@@ -58,7 +58,12 @@ public class Convert {
 	}
 
 	public static String text2num(String input, String local) {
-		
+		Map<String, String> dico = dataConvert.get(local);
+		for(String str : dico.keySet()){
+			if (dico.get(str).equals(input)) {
+				return str;
+			}
+		}
 		return null;
 	}
 }
