@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Convert {
-	private static Map<String, Map<String, String>> dataConvert = new HashMap<String, Map<String, String>>();
+	public static Map<String, Map<String, String>> dataConvert = new HashMap<String, Map<String, String>>();
 
-	private static Map<String, String> dataString = new HashMap<String, String>();
 
 	static {
-		dataConvert.put("FR_fr", new HashMap<String, String>());
-		Map<String, String> fr = dataConvert.get("FR_fr");
+		dataConvert.put("fr_FR", new HashMap<String, String>());
+		Map<String, String> fr = dataConvert.get("fr_FR");
 		fr.put("0", "zero");
 		fr.put("1", "un");
 		fr.put("2", "deux");
@@ -21,9 +20,16 @@ public class Convert {
 		fr.put("7", "sept");
 		fr.put("8", "huit");
 		fr.put("9", "neuf");
+		fr.put("10", "dix");
+		fr.put("11", "onze");
+		fr.put("12", "douze");
+		fr.put("13", "treize");
+		fr.put("14", "quatorze");
+		fr.put("15", "quinze");
+		fr.put("16", "seize");
 
-		dataConvert.put("EN_en", new HashMap<String, String>());
-		Map<String, String> en = dataConvert.get("EN_en");
+		dataConvert.put("en_EN", new HashMap<String, String>());
+		Map<String, String> en = dataConvert.get("en_EN");
 		en.put("0", "zero");
 		en.put("1", "one");
 		en.put("2", "two");
@@ -34,6 +40,14 @@ public class Convert {
 		en.put("7", "seven");
 		en.put("8", "eight");
 		en.put("9", "nine");
+		en.put("10", "ten");
+		en.put("11", "eleven");
+		en.put("12", "twelve");
+		en.put("13", "thirteen");
+		en.put("14", "fourteen");
+		en.put("15", "fifteen");
+		en.put("16", "sixteen");
+
 
 	}
 
@@ -44,14 +58,7 @@ public class Convert {
 	}
 
 	public static String text2num(String input, String local) {
-		if (!dataString.values().contains(input)) {
-			return null;
-		}
-		for (String str : dataString.keySet()) {
-			if (dataString.get(str).equals(input)) {
-				return str;
-			}
-		}
+		
 		return null;
 	}
 }
