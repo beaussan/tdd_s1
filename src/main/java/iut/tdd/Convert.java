@@ -2,33 +2,85 @@ package iut.tdd;
 
 public class Convert {
 
-	private static boolean canConvert(String input) {
-		return input.matches("\\d+.\\d+");
-	}
-
 	public static String num2text(String input, String local) {
-		if (!canConvert(input)) {
+		String sep = ".";
+		String in = input.replace(" ", "");
+		in = in.replace(",", ".");
+		String out = "";
+		if (in.endsWith("€")) {
+			sep = "euro";
+			in = in.replace("€", "");
+			out = "centimes";
+		}
+		if (in.endsWith("$")) {
+			sep = "dolards";
+			in = in.replace("$", "");
+			out = "cent";
+		}
+		if (in.endsWith("£")) {
+			sep = "livre";
+			in = in.replace("£", "");
+			out = "pounds";
+		}
+		return num2text(in, local, sep, out);
+	}
+	
+	public static void main(String[] args) {
+		System.out.println(num2text("52,20 €", "fr_FR"));
+	}
+	
+	public static String num2text(String input, String local, String separatorMidl, String sepEnd){
+		
+		Float num;
+		try {
+			num = new Float(input);
+		} catch (NumberFormatException e) {
 			return null;
 		}
-		Float num = new Float(input);
 		int pos = (int) Math.floor(num);
 		int min = (int) Math.floor((num - pos) * 100.0f);
+		String tmp = "";
 		switch (local) {
 		case "fr_FR":
-			return FrenchNumberToWords.convert(pos)
-					+ ((min == 0) ? "" : "." + FrenchNumberToWords.convert(min));
+			tmp = FrenchNumberToWords.convert(pos);
+			if (min != 0) {
+				tmp += " " + separatorMidl + " et " + FrenchNumberToWords.convert(min) + ' ' + sepEnd;
+			}else{
+				if (separatorMidl !=".") {
+					tmp += ' ' + separatorMidl;
+				}
+			}
+			return tmp;
 		case "en_EN":
-			return EnglishNumberToWords.convert(pos)
-					+ ((min == 0) ? "" : "."
-							+ EnglishNumberToWords.convert(min));
+			tmp = EnglishNumberToWords.convert(pos);
+			if (min != 0) {
+				tmp += " " + separatorMidl + " et " + EnglishNumberToWords.convert(min) + ' ' + sepEnd;
+			}else{
+				if (separatorMidl !=".") {
+					tmp += ' ' + separatorMidl;
+				}
+			}
+			return tmp;
 		case "tu_TU":
-			return TurkishNumberToWords.convert(pos)
-					+ ((min == 0) ? "" : "."
-							+ TurkishNumberToWords.convert(min));
+			tmp = TurkishNumberToWords.convert(pos);
+			if (min != 0) {
+				tmp += " " + separatorMidl + " et " + TurkishNumberToWords.convert(min) + ' ' + sepEnd;
+			}else{
+				if (separatorMidl !=".") {
+					tmp += ' ' + separatorMidl;
+				}
+			}
+			return tmp;
 		case "ro_RO":
-			return RomanianNumbersToWords.convert(pos)
-					+ ((min == 0) ? "" : "."
-							+ RomanianNumbersToWords.convert(min));
+			tmp = RomanianNumbersToWords.convert(pos);
+			if (min != 0) {
+				tmp += " " + separatorMidl + " et " + RomanianNumbersToWords.convert(min) + ' ' + sepEnd;
+			}else{
+				if (separatorMidl !=".") {
+					tmp += separatorMidl;
+				}
+			}
+			return tmp;
 		default:
 			break;
 		}

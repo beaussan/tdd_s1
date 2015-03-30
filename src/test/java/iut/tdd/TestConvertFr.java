@@ -2250,5 +2250,10 @@ public class TestConvertFr {
 		Assert.assertEquals("neuf cent quatre-vingt-dix-sept",
 				Convert.num2text("997", local));
 	}
+	
+	@Test
+	public void test_num2text_euro(){
+		Assert.assertEquals("cinquante-deux euro et vingt centimes", Convert.num2text("52,20 €", local));
+	}
 
 }
