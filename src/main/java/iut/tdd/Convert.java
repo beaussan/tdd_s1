@@ -26,7 +26,7 @@ public class Convert {
 	}
 	
 	public static void main(String[] args) {
-		System.out.println(num2text("52,20 €", "fr_FR"));
+		System.out.println(num2text("52,05 €", "fr_FR"));
 	}
 	
 	public static String num2text(String input, String local, String separatorMidl, String sepEnd){
@@ -38,7 +38,8 @@ public class Convert {
 			return null;
 		}
 		int pos = (int) Math.floor(num);
-		int min = (int) Math.floor((num - pos) * 100.0f);
+		int min = (int) Math.round((num - pos) * 100.0f);
+		//System.out.println(Math.floor(num)+ "; " + Math.round((num - pos) * 100.0f));
 		String tmp = "";
 		switch (local) {
 		case "fr_FR":
